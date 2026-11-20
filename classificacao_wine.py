@@ -4,10 +4,6 @@ Este arquivo concentra toda a implementacao. Pode ser executado sozinho
 ou importado pelo notebook classificacao_wine.ipynb.
 """
 
-import matplotlib
-
-matplotlib.use("Agg")
-
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -133,12 +129,13 @@ def main():
         print(resultado["relatorio"])
 
     print(f"Melhor pipeline pela validacao cruzada: {melhor_nome}")
-    plotar_matriz_confusao(
+    fig, ax = plotar_matriz_confusao(
         resultados_teste[melhor_nome]["modelo"],
         X_teste, y_teste, nomes_classes, melhor_nome,
     )
-    plt.savefig("matriz_confusao.png", dpi=300, bbox_inches="tight")
-    plt.close()
+    
+    fig.savefig("matriz_confusao.png", dpi=300, bbox_inches="tight")
+    plt.close(fig)
 
     print("Matriz de confusao salva em matriz_confusao.png")
 
